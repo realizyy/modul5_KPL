@@ -50,10 +50,16 @@ public class SayaTubeUser
     public void printAllVideoPlayCount()
     {
         int i = 1;
+        //prekondisi print 8 video
+        
         Console.WriteLine("User : " + Username);
         foreach (SayaTubeVideo playCount in uploadedVideos)
         {
             Console.WriteLine("Video " + i + " Judul : " + playCount.getTitle(), i++);
+            if (i > 8)
+            {
+                break;
+            }
         }
     }
 
