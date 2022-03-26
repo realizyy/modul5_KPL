@@ -1,4 +1,6 @@
-﻿namespace modul5_1302204035;
+﻿using System.Diagnostics;
+
+namespace modul5_1302204035;
 
 public class SayaTubeUser
 {
@@ -9,6 +11,18 @@ public class SayaTubeUser
     //constructor
     public SayaTubeUser(string username, List<SayaTubeVideo> uploadedVideos)
     {
+        try
+        {
+            if (username.Length == 0 || username.Length > 100)
+            {
+                throw new Exception("Nama username tidak boleh lebih dari 100 karakter dan tidak berupa NULL");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
         this.id = new System.Random().Next(99999);
         this.Username = username;
         this.uploadedVideos = uploadedVideos;
@@ -28,6 +42,7 @@ public class SayaTubeUser
     //addVideo
     public void addVideo(SayaTubeVideo video)
     {
+        Debug.Assert(video != null, "Video yang ditambahkan tidak boleh NULL");
         uploadedVideos.Add(video);
     }
     

@@ -1,4 +1,6 @@
-﻿namespace modul5_1302204035;
+﻿using System.Diagnostics;
+
+namespace modul5_1302204035;
 
 public class SayaTubeVideo
 {
@@ -11,6 +13,23 @@ public class SayaTubeVideo
     {
         //generate id random 5 digit
         this.id = new System.Random().Next(99999);
+        try
+        {
+            if (title.Length > 200 || title.Length == 0)
+            {
+                throw new System.ArgumentException("Judul video tidak boleh lebih dari 200 karakter dan tidak NULL");
+            }
+
+            if (playCount < 0 || playCount > 25000000)
+            {
+                throw new System.ArgumentException("PlayCount tidak boleh NULL dan tidak lebih dari 25.000.000");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
         this.title = title;
         this.playCount = playCount;
     }
@@ -18,6 +37,7 @@ public class SayaTubeVideo
     //increasePlayCount
     public void increasePlayCount(int count)
     {
+        Debug.Assert(count > nint.MaxValue, "Video tidak boleh lebih dari maximal int value");
         this.playCount += count;
     }
     
